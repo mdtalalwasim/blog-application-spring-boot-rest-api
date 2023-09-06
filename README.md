@@ -8,11 +8,12 @@ Project: Blog App using spring boot realtime rest apis, spring security, role ba
 # Application.properties files:
 
 #for changing the default port number.
+
 server.port=7070
 
 #db configuration
 
-spring.datasource.url=jdbc:mysql://localhost:3306/blog_app_apis
+spring.datasource.url=jdbc:mysql://localhost:3306/"your_database_name"
 
 spring.datasource.username ="your_username"
 
