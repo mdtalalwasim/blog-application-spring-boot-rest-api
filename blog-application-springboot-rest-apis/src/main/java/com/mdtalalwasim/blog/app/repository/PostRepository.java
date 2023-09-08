@@ -8,6 +8,7 @@ import com.mdtalalwasim.blog.app.entity.Category;
 import com.mdtalalwasim.blog.app.entity.Post;
 import com.mdtalalwasim.blog.app.entity.User;
 
+
 public interface PostRepository extends JpaRepository<Post, Integer>{
 	
 	

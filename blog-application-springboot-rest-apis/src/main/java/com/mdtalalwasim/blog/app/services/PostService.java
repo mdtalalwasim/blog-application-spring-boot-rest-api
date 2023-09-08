@@ -10,7 +10,7 @@ public interface PostService {
 	//CRUD methods
 	
 	//create post
-	Post createPost(PostDto postDto);
+	PostDto createPost(PostDto postDto, Integer userId, Integer postId);
 	
 	//update post
 	Post updatePost(PostDto postDto, Integer postId);
