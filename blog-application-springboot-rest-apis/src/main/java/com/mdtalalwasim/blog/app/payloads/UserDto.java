@@ -15,6 +15,7 @@ public class UserDto {
 	
 	
 	//User Dto consist only those fields which are actually taken from user input.
+	
 	private int id;
 	
 	@NotEmpty

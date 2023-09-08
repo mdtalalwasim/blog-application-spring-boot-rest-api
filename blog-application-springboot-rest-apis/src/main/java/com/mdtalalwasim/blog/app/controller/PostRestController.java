@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mdtalalwasim.blog.app.payloads.PostDto;
 import com.mdtalalwasim.blog.app.services.PostService;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/")
 public class PostRestController {
 	
 	@Autowired
 	PostService postService;
 	
 	@PostMapping("/user/{userId}/category/{categoryId}/posts")
-	public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto,
+	public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto,
 			@PathVariable Integer userId,
 			@PathVariable Integer categoryId){
 		
