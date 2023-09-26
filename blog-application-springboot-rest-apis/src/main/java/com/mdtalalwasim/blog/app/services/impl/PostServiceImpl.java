@@ -2,6 +2,7 @@ package com.mdtalalwasim.blog.app.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,15 +81,25 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> getAllPostByCategory(Integer categoryId) {
+	public List<PostDto> getAllPostByCategory(Integer categoryId) {
 		
-		return null;
+		Category cat = this.categoryRepository.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category ", "category id ", categoryId));
+		List<Post> listOfPost = this.postRepository.findByCategory(cat);
+		
+		
+		List<PostDto> postDto = listOfPost.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		return postDto;
 	}
 
 	@Override
-	public List<Post> getAllPostByUser(Integer userId) {
+	public List<PostDto> getAllPostByUser(Integer userId) {
+		User user = this.userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User ", "user Id", userId));
 		
-		return null;
+		List<Post> listOfPostByUser = this.postRepository.findByUser(user);
+		
+		List<PostDto> postDto = listOfPostByUser.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		
+		return postDto;
 	}
 
 	@Override
