@@ -19,10 +19,10 @@ public interface PostService {
 	void deletePost(Integer postId);
 	
 	//get Single post
-	Post getPost(Integer postId);
+	PostDto getPostById(Integer postId);
 	
 	//get list of post
-	List<Post> getAllPost();
+	List<PostDto> getAllPost();
 	
 	//get post by category
 	

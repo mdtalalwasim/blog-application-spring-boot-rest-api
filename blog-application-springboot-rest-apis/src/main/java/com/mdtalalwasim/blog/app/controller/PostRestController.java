@@ -20,31 +20,28 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/")
 public class PostRestController {
-	
+
 	@Autowired
 	PostService postService;
-	
+
 	@PostMapping("/user/{userId}/category/{categoryId}/posts")
-	public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto,
-			@PathVariable Integer userId,
-			@PathVariable Integer categoryId){
-		
+	public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto, @PathVariable Integer userId,
+			@PathVariable Integer categoryId) {
+
 		PostDto createdPost = this.postService.createPost(postDto, userId, categoryId);
 		return new ResponseEntity<PostDto>(createdPost, HttpStatus.CREATED);
-		 
-		
+
 	}
-	
-	
-	//get by user
+
+	// get by user
 	@GetMapping("/user/{userId}/posts")
-	public ResponseEntity<List<PostDto>> getAllPostByUser(@PathVariable("userId") Integer userId){
-		
+	public ResponseEntity<List<PostDto>> getAllPostByUser(@PathVariable("userId") Integer userId) {
+
 		List<PostDto> allPostByUser = this.postService.getAllPostByUser(userId);
-		
-		return new ResponseEntity<List<PostDto>>(allPostByUser,HttpStatus.OK);
+
+		return new ResponseEntity<List<PostDto>>(allPostByUser, HttpStatus.OK);
 	}
-	
+
 	// get by category
 	@GetMapping("/category/{categoryId}/posts")
 	public ResponseEntity<List<PostDto>> getPostByCategory(@PathVariable("categoryId") Integer categoryId) {
@@ -53,6 +50,25 @@ public class PostRestController {
 
 		return new ResponseEntity<List<PostDto>>(allPostByCategory, HttpStatus.OK);
 	}
-	
+
+	// get all post 
+	@GetMapping("/all-post")
+	public ResponseEntity<List<PostDto>> getAllPost() {
+
+		List<PostDto> allPost = this.postService.getAllPost();
+
+		return new ResponseEntity<List<PostDto>>(allPost, HttpStatus.OK);
+
+	}
+
+	// get single post by Id
+	@GetMapping("/single-post/{postId}")
+	public ResponseEntity<PostDto> getSinglePostById(@PathVariable Integer postId) {
+
+		PostDto singlePost = this.postService.getPostById(postId);
+
+		return new ResponseEntity<PostDto>(singlePost, HttpStatus.OK);
+
+	}
 
 }
