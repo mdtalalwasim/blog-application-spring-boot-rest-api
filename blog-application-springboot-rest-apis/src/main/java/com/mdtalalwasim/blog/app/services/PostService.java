@@ -13,7 +13,7 @@ public interface PostService {
 	PostDto createPost(PostDto postDto, Integer userId, Integer postId);
 	
 	//update post
-	Post updatePost(PostDto postDto, Integer postId);
+	PostDto updatePost(PostDto postDto, Integer postId);
 	
 	//delete post
 	void deletePost(Integer postId);
@@ -32,7 +32,7 @@ public interface PostService {
 	List<PostDto> getAllPostByUser(Integer userId);
 	
 	//searchPost
-	List<Post> searchPostByKeyword(String keyword);
+	List<PostDto> searchPostByKeyword(String keyword);
 	
 	
 

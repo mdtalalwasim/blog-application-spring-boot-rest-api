@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdtalalwasim.blog.app.payloads.ApiResponse;
 import com.mdtalalwasim.blog.app.payloads.PostDto;
 import com.mdtalalwasim.blog.app.services.PostService;
 
@@ -51,7 +54,7 @@ public class PostRestController {
 		return new ResponseEntity<List<PostDto>>(allPostByCategory, HttpStatus.OK);
 	}
 
-	// get all post 
+	// get all post
 	@GetMapping("/all-post")
 	public ResponseEntity<List<PostDto>> getAllPost() {
 
@@ -69,6 +72,24 @@ public class PostRestController {
 
 		return new ResponseEntity<PostDto>(singlePost, HttpStatus.OK);
 
+	}
+
+	// delete post
+	// use custom response class
+	@DeleteMapping("/posts/{postId}")
+	public ApiResponse deletePost(@PathVariable Integer postId) {
+
+		this.postService.deletePost(postId);
+		return new ApiResponse("Post id deleted successfully with this id:" + postId, true);
+	}
+
+	// update post
+	// use custom response class
+	@PutMapping("/posts/{postId}")
+	public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable Integer postId) {
+
+		PostDto updatePost = this.postService.updatePost(postDto, postId);
+		return new ResponseEntity<PostDto>(updatePost, HttpStatus.OK);
 	}
 
 }
