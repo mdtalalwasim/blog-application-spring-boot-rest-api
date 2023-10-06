@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdtalalwasim.blog.app.payloads.ApiResponse;
 import com.mdtalalwasim.blog.app.payloads.PostDto;
+import com.mdtalalwasim.blog.app.payloads.PostResponse;
 import com.mdtalalwasim.blog.app.services.PostService;
 
 import jakarta.validation.Valid;
@@ -57,12 +58,12 @@ public class PostRestController {
 
 	// get all post
 	@GetMapping("/all-post")
-	public ResponseEntity<List<PostDto>> getAllPost(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber, 
+	public ResponseEntity<PostResponse> getAllPost(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber, 
 			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize) {
 
-		List<PostDto> allPost = this.postService.getAllPost(pageNumber, pageSize);
+		PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize);
 
-		return new ResponseEntity<List<PostDto>>(allPost, HttpStatus.OK);
+		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
 
 	}
 

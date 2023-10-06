@@ -17,6 +17,7 @@ import com.mdtalalwasim.blog.app.entity.Post;
 import com.mdtalalwasim.blog.app.entity.User;
 import com.mdtalalwasim.blog.app.exceptions.ResourceNotFoundException;
 import com.mdtalalwasim.blog.app.payloads.PostDto;
+import com.mdtalalwasim.blog.app.payloads.PostResponse;
 import com.mdtalalwasim.blog.app.repository.CategoryRepository;
 import com.mdtalalwasim.blog.app.repository.PostRepository;
 import com.mdtalalwasim.blog.app.repository.UserRepository;
@@ -90,7 +91,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
+	public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
 
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
@@ -101,7 +102,19 @@ public class PostServiceImpl implements PostService {
 
 		List<PostDto> postDto = findAllPost.stream().map((post) -> this.modelMapper.map(post, PostDto.class))
 				.collect(Collectors.toList());
-		return postDto;
+		
+		
+		PostResponse postResponse = new PostResponse();
+		
+		postResponse.setContent(postDto);
+		postResponse.setPageNumber(pageOfPost.getNumber());
+		postResponse.setPageSize(pageOfPost.getSize());
+		postResponse.setTotalElemets(pageOfPost.getTotalElements());
+		postResponse.setTotalPages(pageOfPost.getTotalPages());
+		postResponse.setLastPage(pageOfPost.isLast());
+		
+		
+		return postResponse;
 	}
 
 	@Override

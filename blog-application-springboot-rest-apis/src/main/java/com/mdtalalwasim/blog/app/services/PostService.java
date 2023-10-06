@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mdtalalwasim.blog.app.entity.Post;
 import com.mdtalalwasim.blog.app.payloads.PostDto;
+import com.mdtalalwasim.blog.app.payloads.PostResponse;
 
 public interface PostService {
 	
@@ -22,7 +23,8 @@ public interface PostService {
 	PostDto getPostById(Integer postId);
 	
 	//get list of post
-	List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
+	//List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
+	PostResponse getAllPost(Integer pageNumber, Integer pageSize);
 	
 	//get post by category
 	
