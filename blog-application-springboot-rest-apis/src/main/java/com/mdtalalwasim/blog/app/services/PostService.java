@@ -22,7 +22,7 @@ public interface PostService {
 	PostDto getPostById(Integer postId);
 	
 	//get list of post
-	List<PostDto> getAllPost();
+	List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
 	
 	//get post by category
 	
