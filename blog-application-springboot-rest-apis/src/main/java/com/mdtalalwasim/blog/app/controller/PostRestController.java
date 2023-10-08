@@ -58,10 +58,12 @@ public class PostRestController {
 
 	// get all post
 	@GetMapping("/all-post")
-	public ResponseEntity<PostResponse> getAllPost(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber, 
-			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize) {
+	public ResponseEntity<PostResponse> getAllPost(
+			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber, 
+			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize, 
+			@RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy) {
 
-		PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize);
+		PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize, sortBy);
 
 		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
 

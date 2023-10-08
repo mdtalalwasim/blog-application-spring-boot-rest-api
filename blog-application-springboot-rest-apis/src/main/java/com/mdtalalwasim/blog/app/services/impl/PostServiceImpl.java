@@ -2,11 +2,13 @@ package com.mdtalalwasim.blog.app.services.impl;
 
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -91,9 +93,9 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
+	public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy) {
 
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
 
 		Page<Post> pageOfPost = this.postRepository.findAll(pageable);
 		// List<Post> findAllPost = this.postRepository.findAll();//old one-without
