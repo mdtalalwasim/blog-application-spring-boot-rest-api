@@ -104,5 +104,11 @@ public class PostRestController {
 		List<PostDto> post = this.postService.searchPostByKeyword(keywords);
 		return new ResponseEntity<List<PostDto>>(post,HttpStatus.OK);
 	}
+	
+	@GetMapping("/posts/search-contains/{keywords}")
+	public ResponseEntity<List<PostDto>> searchPostByTitleContainsInPost(@PathVariable("keywords") String keywords){
+		List<PostDto> post = this.postService.searchPostsTitleWithKewordContains(keywords);
+		return new ResponseEntity<List<PostDto>>(post,HttpStatus.OK);
+	}
 
 }

@@ -146,8 +146,17 @@ public class PostServiceImpl implements PostService {
 		System.out.println(keyword+" this is keyword...");
 		//List<Post> posts = this.postRepository.findByPostTitleContaining(keyword);
 		List<Post> posts = this.postRepository.findByPostTitle(keyword);
-		System.err.println(posts.toString());
+		System.out.println(posts.toString());
 		List<PostDto> postDto = posts.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		System.out.println("Here ");
+		return postDto;
+	}
+
+	@Override
+	public List<PostDto> searchPostsTitleWithKewordContains(String keyword) {
+		List<Post> posts = this.postRepository.findByPostTitleContaining(keyword);
+		
+		List<PostDto> postDto = posts.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 		return postDto;
 	}
 
