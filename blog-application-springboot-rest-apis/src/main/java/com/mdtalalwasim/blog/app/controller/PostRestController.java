@@ -3,6 +3,7 @@ package com.mdtalalwasim.blog.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mdtalalwasim.blog.app.config.ApplicationConstants;
 import com.mdtalalwasim.blog.app.payloads.ApiResponse;
 import com.mdtalalwasim.blog.app.payloads.PostDto;
 import com.mdtalalwasim.blog.app.payloads.PostResponse;
+import com.mdtalalwasim.blog.app.services.FileService;
 import com.mdtalalwasim.blog.app.services.PostService;
 
 import jakarta.validation.Valid;
@@ -30,6 +33,13 @@ public class PostRestController {
 
 	@Autowired
 	PostService postService;
+	
+	@Autowired
+	private FileService fileService;
+	
+	@Value("${project.image}")
+	private String path;
+	
 
 	@PostMapping("/user/{userId}/category/{categoryId}/posts")
 	public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto, @PathVariable Integer userId,
@@ -112,5 +122,17 @@ public class PostRestController {
 		List<PostDto> post = this.postService.searchPostsTitleWithKewordContains(keywords);
 		return new ResponseEntity<List<PostDto>>(post,HttpStatus.OK);
 	}
+	
+	
+	//post image upload
+//	@PostMapping("/post/image/upload/{postId}")
+//	public ResponseEntity<FileUploadResponse> uploadPostImage(@RequestParam("image") MultipartFile image, @path){
+//		
+//		//upload image
+//		String fileName = this.fileService.uploadImage(path, image);
+//		
+//	}
+	
+	
 
 }
