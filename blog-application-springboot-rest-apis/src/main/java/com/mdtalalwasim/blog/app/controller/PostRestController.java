@@ -1,5 +1,6 @@
 package com.mdtalalwasim.blog.app.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class PostRestController {
 	
 	@Value("${project.image}")
 	private String path;
+
+	private PostDto postById;
+
+	private PostDto  updatePost;
 	
 
 	@PostMapping("/user/{userId}/category/{categoryId}/posts")
@@ -125,13 +130,19 @@ public class PostRestController {
 	
 	
 	//post image upload
-//	@PostMapping("/post/image/upload/{postId}")
-//	public ResponseEntity<FileUploadResponse> uploadPostImage(@RequestParam("image") MultipartFile image, @path){
-//		
-//		//upload image
-//		String fileName = this.fileService.uploadImage(path, image);
-//		
-//	}
+	@PostMapping("/post/image/upload/{postId}")
+	public ResponseEntity<PostDto> uploadPostImage(@RequestParam("image") MultipartFile image, @PathVariable Integer postId ) throws IOException{
+		
+		//upload image
+		PostDto postDto = this.postService.getPostById(postId);
+		String fileName = this.fileService.uploadImage(path, image);
+		
+		postDto.setPostImage(fileName);
+		PostDto updatePost = this.postService.updatePost(postDto, postId);
+		
+		return new ResponseEntity<>(updatePost, HttpStatus.OK);
+		
+	}
 	
 	
 
