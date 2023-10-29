@@ -7,15 +7,18 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.3</version>
 		
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
+	
+	
+	
 	<groupId>com.mdtalalwasim.blog.app</groupId>
 	<artifactId>blog-application-springboot-rest-apis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blog-application-springboot-rest-apis</name>
 	<description>Spring boot rest api beckend project.</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -26,6 +29,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		
+		
+		<!--to resolve this error: java.lang.ClassNotFoundException: javax.xml.bind.DatatypeConverter-->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		
 		
 		
 		<!--for spring security-->
@@ -77,6 +90,9 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+
+
+
 
 
 

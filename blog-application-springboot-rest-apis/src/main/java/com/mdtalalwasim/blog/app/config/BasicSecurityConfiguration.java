@@ -48,7 +48,9 @@ public class BasicSecurityConfiguration{
 		http
 		.csrf()
 		.disable()
+		
 		.authorizeHttpRequests()
+        .requestMatchers("/api/auth/login").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()

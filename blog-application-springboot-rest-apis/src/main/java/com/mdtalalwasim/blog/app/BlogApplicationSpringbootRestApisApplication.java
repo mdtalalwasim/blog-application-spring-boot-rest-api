@@ -14,6 +14,11 @@ public class BlogApplicationSpringbootRestApisApplication implements CommandLine
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	//this will add
+	public BlogApplicationSpringbootRestApisApplication(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+	
 	public static void main(String[] args) {
 		SpringApplication.run(BlogApplicationSpringbootRestApisApplication.class, args);
 		System.out.println("Hello");
