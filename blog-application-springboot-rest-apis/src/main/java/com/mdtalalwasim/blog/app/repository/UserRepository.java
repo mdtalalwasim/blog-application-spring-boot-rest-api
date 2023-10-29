@@ -10,6 +10,6 @@ import com.mdtalalwasim.blog.app.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	
+	//emai used for username - use email for username authentication
 	Optional<User> findByEmail(String email);
 }

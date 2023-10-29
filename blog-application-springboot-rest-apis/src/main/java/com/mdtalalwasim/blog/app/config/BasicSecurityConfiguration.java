@@ -9,13 +9,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mdtalalwasim.blog.app.security.CustomUserDetailsService;
+import com.mdtalalwasim.blog.app.security.JwtAuthenticationEntryPoint;
+import com.mdtalalwasim.blog.app.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +30,12 @@ public class BasicSecurityConfiguration{
 	
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
+	
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,8 +52,14 @@ public class BasicSecurityConfiguration{
 		.anyRequest()
 		.authenticated()
 		.and()
-		.httpBasic();
+		
+		.exceptionHandling().authenticationEntryPoint(this.jwtAuthenticationEntryPoint)
+		.and()
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// to here
+		
+		http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 		// http.authenticationProvider(daoAuthenticationProvider());
 
@@ -69,10 +85,11 @@ public class BasicSecurityConfiguration{
 		return provider;
 	}
 
+	//see this...
 	@Bean
 	public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration configuration) throws Exception {
 
-		return configuration.getAuthenticationManager();
+		return configuration.getAuthenticationManager(); 
 
 	}
 
