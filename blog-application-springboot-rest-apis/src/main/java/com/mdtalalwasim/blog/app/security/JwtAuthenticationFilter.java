@@ -37,17 +37,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		//get jwt token from HttpServletRequest request
 		String requestToken = request.getHeader("Authorization");
 		
-		//token starts with "Wasim 2005356251dfdferfd" --- token sample
+		//token starts with "Bearer 2005356251dfdferfd" --- token sample
 		System.out.println("Token is : "+requestToken);
 		
 		//get username and actual token from the above token.
 		String username =null;
 		String token = null;
 		
-		if(requestToken!= null && requestToken.startsWith("Wasim")) {
+		if(requestToken!= null && requestToken.startsWith("Bearer")) {
 			
 			//actual token form jwt token
-			token = requestToken.substring(6);//token without Wasim
+			token = requestToken.substring(6);//token without Bearer
 			
 			try {
 				// username from jwt token
@@ -66,7 +66,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			
 			
 		}else {
-			System.out.println("JWT Token doesn't begin with Wasim! ");
+			System.out.println("JWT Token doesn't begin with Bearer! ");
 		}
 		
 		
