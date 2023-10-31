@@ -47,7 +47,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		if(requestToken!= null && requestToken.startsWith("Bearer")) {
 			
 			//actual token form jwt token
-			token = requestToken.substring(6);//token without Bearer
+			token = requestToken.substring(7);//token without Bearer
 			
 			try {
 				// username from jwt token
@@ -73,7 +73,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		//token is get then validate the token
 		//validate jwt token
 		
-		if(username!=null && SecurityContextHolder.getContext()==null) {
+		if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
 			
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 			
