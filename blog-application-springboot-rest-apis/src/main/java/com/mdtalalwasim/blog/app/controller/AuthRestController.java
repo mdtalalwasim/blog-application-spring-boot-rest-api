@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdtalalwasim.blog.app.exceptions.ApiExceptionHandler;
 import com.mdtalalwasim.blog.app.payloads.JwtAuthenticationRequest;
 import com.mdtalalwasim.blog.app.payloads.JwtAuthenticationResponse;
 import com.mdtalalwasim.blog.app.security.JwtTokenHelper;
@@ -65,7 +66,7 @@ public class AuthRestController {
 			
 		} catch (BadCredentialsException e) {
 			System.out.println("Invalid Username or Password!");
-			throw new Exception("Invalid Username or Password!");
+			throw new ApiExceptionHandler("Invalid Username or Password!");
 		}
 		//if authentication going well, then we need to generate our token.
 		//if not going well, then it will generate exception... we will handle it globally
