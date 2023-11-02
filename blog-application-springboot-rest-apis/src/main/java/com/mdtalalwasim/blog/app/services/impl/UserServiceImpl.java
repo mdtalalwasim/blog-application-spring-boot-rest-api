@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mdtalalwasim.blog.app.exceptions.*;
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired 
+	private PasswordEncoder passwordEncoder;
 	
 	
 	
@@ -117,6 +121,19 @@ public class UserServiceImpl implements UserService{
 		UserDto userDto = this.modelMapper.map(user, UserDto.class);
 
 		return userDto;
+	}
+
+	@Override
+	public UserDto registerNewUser(UserDto userDto) {
+		User user = this.modelMapper.map(userDto, User.class);
+		
+		//encoded password
+		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+		
+		//set the role to new user
+		
+		
+		return null;
 	}
 	
 	//Alternative way to convert Model Object to Another: Way-2
