@@ -131,7 +131,8 @@ public class UserServiceImpl implements UserService{
 		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 		
 		//set the role to new user
-		//set
+		//next task
+		
 		
 		return null;
 	}
