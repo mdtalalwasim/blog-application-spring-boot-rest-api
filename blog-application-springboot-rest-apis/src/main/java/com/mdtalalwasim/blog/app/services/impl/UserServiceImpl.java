@@ -10,8 +10,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mdtalalwasim.blog.app.exceptions.*;
+import com.mdtalalwasim.blog.app.config.ApplicationConstants;
+import com.mdtalalwasim.blog.app.entity.Role;
 import com.mdtalalwasim.blog.app.entity.User;
 import com.mdtalalwasim.blog.app.payloads.UserDto;
+import com.mdtalalwasim.blog.app.repository.RoleRepository;
 import com.mdtalalwasim.blog.app.repository.UserRepository;
 import com.mdtalalwasim.blog.app.services.UserService;
 
@@ -20,6 +23,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -130,11 +136,20 @@ public class UserServiceImpl implements UserService{
 		//encoded password
 		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 		
-		//set the role to new user
-		//next task
+		//set the role to new user 
+		//ApplicationConstants.NORMAL_USER_ID_HARDCODED_ID_VALUE value = '7002' --- this.roleRepository.findById(7002);
+		Role role = this.roleRepository.findById(ApplicationConstants.NORMAL_USER_ID_HARDCODED_ID_VALUE).get();
+		
+		//set this role to this user
+		user.getRoles().add(role);
+		
+		//now save new User
+		User newUser = this.userRepository.save(user);
 		
 		
-		return null;
+		
+		
+		return this.modelMapper.map(newUser, UserDto.class);
 	}
 	
 	//Alternative way to convert Model Object to Another: Way-2

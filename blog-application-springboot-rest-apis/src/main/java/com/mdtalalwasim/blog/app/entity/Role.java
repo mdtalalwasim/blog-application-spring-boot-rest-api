@@ -13,8 +13,9 @@ import lombok.Setter;
 public class Role {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	//dont need to autoincrement the id for role. because we have only 2 / 3 role for our project. so we have hard coded this.
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id; 
 	
 	private String name;
 	

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mdtalalwasim.blog.app.exceptions.ApiExceptionHandler;
 import com.mdtalalwasim.blog.app.payloads.JwtAuthenticationRequest;
 import com.mdtalalwasim.blog.app.payloads.JwtAuthenticationResponse;
+import com.mdtalalwasim.blog.app.payloads.UserDto;
 import com.mdtalalwasim.blog.app.security.JwtTokenHelper;
+import com.mdtalalwasim.blog.app.services.UserService;
 
 @RestController
 @RequestMapping("/api/auth/")
@@ -28,6 +30,9 @@ public class AuthRestController {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -72,6 +77,15 @@ public class AuthRestController {
 		//if not going well, then it will generate exception... we will handle it globally
 		
 		
+		
+	}
+	
+	//register new user API
+	@PostMapping("/register")
+	public ResponseEntity<UserDto> registerNewUser(@RequestBody UserDto userDto){
+		UserDto registeredNewUser = this.userService.registerNewUser(userDto);
+		
+		return new ResponseEntity<UserDto>(registeredNewUser, HttpStatus.CREATED);
 		
 	}
 }

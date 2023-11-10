@@ -24,7 +24,7 @@ import com.mdtalalwasim.blog.app.security.JwtAuthenticationFilter;
 @Configuration
 @EnableWebSecurity
 //@EnableWebMvc
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true) //We can apply Security on each method by Annotating this.
 public class BasicSecurityConfiguration{
 	//old technique is extends WebSecurityConfigurerAdapter
 	//new technique is:-> Spring Security without the WebSecurityConfigurerAdapter
@@ -52,7 +52,7 @@ public class BasicSecurityConfiguration{
 		.disable()
 		
 		.authorizeHttpRequests()
-        .requestMatchers("/api/auth/login").permitAll()
+        .requestMatchers("/api/auth/**").permitAll()
         
         //now, any one can access GET APIs. No need to login. Now, GET APIs can access publicly
         .requestMatchers(HttpMethod.GET).permitAll()  

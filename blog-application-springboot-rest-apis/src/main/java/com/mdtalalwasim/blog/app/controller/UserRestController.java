@@ -46,6 +46,7 @@ public class UserRestController {
 		return  ResponseEntity.ok(updatedUser);
 	}
 	
+	//to make access for only ADMIN ROLE.  
 	//Admin can delete only
 	// delete user
 	@PreAuthorize("hasRole('ADMIN')")//by adding this, this 'deleteUser' method can only use by 'ADMIN' only admin has the authority to delete this. 
