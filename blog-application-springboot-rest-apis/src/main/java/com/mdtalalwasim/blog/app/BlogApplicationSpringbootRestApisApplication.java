@@ -64,7 +64,7 @@ public class BlogApplicationSpringbootRestApisApplication implements CommandLine
 			
 			List<Role> rolesResult	 = this.roleRepository.saveAll(roles);
 			
-			//sysout
+			//only systout for personal check.
 			rolesResult.forEach(r->{
 				System.out.println(r.getName());  
 			});
