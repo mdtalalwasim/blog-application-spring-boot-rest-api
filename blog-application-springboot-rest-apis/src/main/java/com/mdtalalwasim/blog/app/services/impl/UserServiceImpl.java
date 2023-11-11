@@ -144,6 +144,7 @@ public class UserServiceImpl implements UserService{
 		user.getRoles().add(role);
 		
 		//now save new User
+		//now save new User
 		User newUser = this.userRepository.save(user);
 		
 		
