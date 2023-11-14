@@ -80,11 +80,12 @@
 		
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
 		<!--for swagger-->
-		<dependency>
+		<!--<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
-		</dependency>
+		</dependency>-->
+		
 		
 		<!--<dependency>
             <groupId>io.springfox</groupId>
