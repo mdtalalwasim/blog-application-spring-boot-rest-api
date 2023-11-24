@@ -1,10 +1,10 @@
 # Bloggin Application Project : Spring Boot REST API with MYSQL Database.
 Full backend project spring boot rest api. Blogging Application Spring Boot REST API.
 
-<h3>Project:</h3> Blog App using spring boot realtime rest apis, spring security, role based authentication, JWT, spring data jpa(hibernate) and Pagination MySql Database. Api documentation using swagger, Using DTO for Data Transfer etc.
+<h3>Project:</h3> Blog Application using spring boot realtime rest apis, spring security, role based authentication, JWT, spring data jpa(hibernate) and Pagination MySql Database. Api documentation using swagger, Using DTO for Data Transfer etc.
 
 
-# Enhanced Entity-Relationship(EER Diagram):
+### Enhanced Entity-Relationship(EER Diagram):
 
 
 <!--![blogging-application-spring-boot-EER Diagram-Md Talal Wasim-Enhanced Entity-Relationship](https://github.com/mdtalalwasim/blog-application-spring-boot-rest-api/assets/91146041/b810f354-4a21-41ee-9182-dda7055fb4a1)-->
@@ -23,7 +23,7 @@ Full backend project spring boot rest api. Blogging Application Spring Boot REST
 <hr>
 <br>
 
-# Application.properties files:
+## Application.properties files:
 
 #for changing the default port number.
 
