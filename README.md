@@ -1,4 +1,4 @@
-# Blogg Application Project Spring Boot : Spring Boot REST API Project with MYSQL Database.
+# Blog Application Project Spring Boot : Spring Boot REST API Project with MYSQL Database.
 Full backend project on spring boot rest api. Blogging Application using Spring Boot REST API.
 
 <h3>Project:</h3> Blog Application using spring boot realtime rest apis, spring security, role based authentication, JWT, spring data jpa(hibernate) and Pagination MySql Database. Api documentation using swagger, Using DTO for Data Transfer etc.
